@@ -1,0 +1,51 @@
+---
+- name: Converge
+  hosts: all
+  vars:
+#    kvm_network_add:
+#      - name: default22
+#        template: default22.xml.j2
+#    kvm_pool_add:
+#      - name: default22
+#        template: default22.xml.j2
+#    kvm_vm_add:
+#      - name: House
+#        template: House.xml.j2
+#        autostart: no
+#        files:
+#          - name: House.qcow2
+#            dest: /opt/House.qcow2
+#            owner: root
+#            group: root
+#            mode: '0600'
+    kvm_staff_use_svirt: no
+    kvm_unprivuser_use_svirt: no
+    kvm_virt_sandbox_use_audit: no
+    kvm_virt_sandbox_use_netlink: no
+    kvm_virt_sandbox_use_sys_admin: no
+    kvm_virt_transition_userdomain: no
+    kvm_virt_use_comm: no
+    kvm_virt_use_execmem: no
+    kvm_virt_use_fusefs: no
+    kvm_virt_use_nfs: no
+    kvm_virt_use_rawip: no
+    kvm_virt_use_samba: no
+    kvm_virt_use_sanlock: no
+    kvm_virt_use_usb: no
+    kvm_virt_use_xserver: no
+  pre_tasks:
+#    - name: update RedHat systems running yum
+#      yum:
+#        name: "*"
+#        state: latest
+#      when: ansible_pkg_mgr in ['yum', 'dnf']
+
+    - name: update Ubuntu/Debian systems
+      apt:
+#        upgrade: dist
+        update_cache: true
+        cache_valid_time: 3600
+      when: ansible_pkg_mgr == "apt"
+
+  roles:
+    - role: guidugli.kvm
