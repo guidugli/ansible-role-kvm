@@ -1,7 +1,7 @@
 ---
 
 - name: Check selinux booleans
-  assert:
+  ansible.builtin.assert:
     that:
       - vars[item] | type_debug == 'bool'
     quiet: yes

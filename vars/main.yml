@@ -18,6 +18,8 @@ _kvm_packages:
              'virt-manager', 'virt-viewer', 'libguestfs-tools', 'virt-top', 'python36-lxml', 'python-lxml']
   Ubuntu-20: ['python3-lxml', 'qemu-kvm', 'virt-manager', 'bridge-utils', 'libnss-libvirt',
               'libguestfs-tools', 'virtinst', 'virt-top', 'python3-libvirt']
+  Ubuntu-22: ['python3-lxml', 'qemu-kvm', 'virt-manager', 'bridge-utils', 'libnss-libvirt',
+              'libguestfs-tools', 'virtinst', 'virt-top', 'python3-libvirt']
   Debian-11: ['python3-lxml', 'qemu-kvm', 'virt-manager', 'bridge-utils', 'libnss-libvirt',
               'libguestfs-tools', 'virtinst', 'python3-libvirt']
 

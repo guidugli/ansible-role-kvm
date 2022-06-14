@@ -2,7 +2,7 @@
 # tasks file for kvm
 
 - name: Warning if installing on container
-  debug:
+  ansible.builtin.debug:
     msg:
       - "============ WARNING ============"
       - "This role will not fail if it is unable to start systemd service when"
@@ -11,7 +11,7 @@
   when: ansible_virtualization_type in _container_types or ansible_connection in _container_types
 
 - name: include assert.yml
-  include_tasks: assert.yml
+  ansible.builtin.include_tasks: assert.yml
 
 - name: include kvm.yml
-  include_tasks: kvm.yml
+  ansible.builtin.include_tasks: kvm.yml
