@@ -16,7 +16,7 @@
   ignore_errors: "{{ ansible_virtualization_type in _container_types or ansible_connection in _container_types }}"
 
 - name: Set selinux boolean values
-  ansible.builtin.seboolean:
+  ansible.posix.seboolean:
     name: "{{ kvm_sebool_map[item] }}"
     state: "{{ vars[item] }}"
     persistent: yes
@@ -40,7 +40,7 @@
     - kvm_virt_use_sanlock
     - kvm_virt_use_usb
     - kvm_virt_use_xserver
-  notify: restart services
+  notify: Restart services
 
 - name: "Create symlink from {{ kvm_qemu_link.src }} to {{ kvm_qemu_link.dest }}"
   ansible.builtin.file:
@@ -56,6 +56,9 @@
 
 # Define a new network
 - name: Create and set networks to autostart on boot
+  when:
+    - kvm_network_add is defined
+    - kvm_network_add | length > 0
   block:
     - name: Define network
       community.libvirt.virt_net:
@@ -75,12 +78,10 @@
         state: active
         name: "{{ item.name }}"
       loop: "{{ kvm_network_add }}"
-  when:
-    - kvm_network_add is defined
-    - kvm_network_add | length > 0
 
 # Remove a network
 - name: Stop and remove networks
+  when: kvm_network_remove is defined
   block:
     - name: Stop (destroy) network
       community.libvirt.virt_net:
@@ -94,10 +95,10 @@
         command: undefine
         name: "{{ item }}"
       loop: "{{ kvm_network_remove }}"
-  when: kvm_network_remove is defined
 
 # POOLS
 - name: Create and set pools to autostart on boot
+  when: kvm_pool_add is defined
   block:
     - name: Define pool
       community.libvirt.virt_pool:
@@ -117,10 +118,10 @@
         state: active
         name: "{{ item.name }}"
       loop: "{{ kvm_pool_add }}"
-  when: kvm_pool_add is defined
 
 # Remove a pool
 - name: Stop and remove pools
+  when: kvm_pool_remove is defined
   block:
     - name: Stop (destroy) pool
       community.libvirt.virt_pool:
@@ -134,7 +135,6 @@
         command: undefine
         name: "{{ item }}"
       loop: "{{ kvm_pool_remove }}"
-  when: kvm_pool_remove is defined
 
  # VMs
 
@@ -160,7 +160,7 @@
   loop: "{{ looplist }}"
 
  # Defining a VM and making is autostart with host. VM will be off after this task
-- name: define vm from xml and set autostart
+- name: Define vm from xml and set autostart
   environment:
     PATH: "{{ ansible_env.PATH }}:/usr/libexec"
   community.libvirt.virt:
@@ -171,6 +171,7 @@
 
 # Stop vm and undefine it
 - name: Stop VMs and undefine them
+  when: kvm_vm_remove is defined
   block:
     - name: Stop (destroy) vm
       community.libvirt.virt:
@@ -184,4 +185,3 @@
         command: undefine
         name: "{{ item }}"
       loop: "{{ kvm_vm_remove }}"
-  when: kvm_vm_remove is defined

@@ -10,8 +10,8 @@
       - "workflows. So it is recommended to do a post setup checkup in this case."
   when: ansible_virtualization_type in _container_types or ansible_connection in _container_types
 
-- name: include assert.yml
+- name: Include assert.yml
   ansible.builtin.include_tasks: assert.yml
 
-- name: include kvm.yml
+- name: Include kvm.yml
   ansible.builtin.include_tasks: kvm.yml
