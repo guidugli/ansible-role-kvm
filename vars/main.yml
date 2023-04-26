@@ -13,7 +13,7 @@ _kvm_packages:
   RedHat: ['python3-lxml', 'libvirt', 'libvirt-nss', 'virt-install', 'libvirt-daemon-kvm',
            'virt-manager', 'virt-viewer', 'libguestfs-tools', 'python3-libguestfs', 'virt-top']
   Rocky: ['python3-lxml', 'libvirt', 'libvirt-nss', 'virt-install', 'libvirt-daemon-kvm',
-           'virt-manager', 'virt-viewer', 'libguestfs-tools', 'python3-libguestfs', 'virt-top']
+          'virt-manager', 'virt-viewer', 'libguestfs-tools', 'python3-libguestfs', 'virt-top']
   CentOS-7: ['libvirt-python', 'python36-libvirt', 'libvirt-nss', 'virt-install', 'libvirt-daemon-kvm',
              'virt-manager', 'virt-viewer', 'libguestfs-tools', 'virt-top', 'python36-lxml', 'python-lxml']
   RedHat-7: ['libvirt-python', 'python36-libvirt', 'libvirt-nss', 'virt-install', 'libvirt-daemon-kvm',
