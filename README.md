@@ -20,6 +20,7 @@ Role Variables
     #    template: default22.xml.j2
 
 Specify KVM networks to be added. The template must exist on `templates/networks` directory.
+The template must be a network definition in XML format, like the definitions found at /etc/libvirt/qemu/networks/.
 
     #kvm_network_remove:
     #  - default22
@@ -31,6 +32,7 @@ Specify the name of KVM networks to be removed.
     #    template: default22.xml.j2
 
 Specify KVM storage pools to be added. The template must exist on `templates/pools` directory.
+The template must be a storage pool definition in XML format, like the definitions found at /etc/libvirt/storage/.
 
     #kvm_pool_remove:
     #  - default22
@@ -49,6 +51,7 @@ Specify the name of KVM storage pools to remove.
     #        mode: '0600'
 
 Specify KVM virtual machines to be added. The template must exist on `templates/vms` directory.
+The template must be a VM definition in XML format, like the definitions found at /etc/libvirt/qemu.
 
     #kvm_vm_remove:
     #  - House
