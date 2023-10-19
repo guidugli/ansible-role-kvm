@@ -135,14 +135,18 @@ To install it, run: nsible-galaxy collection install community.libvirt
 Example Playbook
 ----------------
 
+    # In this example, templates/networks and templates/pools directories should be created
+    # and the file defaultnetwork.xml.j2 should be copied to templates/networks and 
+    # defaultpool.xml.j2 should be copied to templates/pools.
+
     - hosts: servers
       vars:
         kvm_network_add:
           - name: default22
-            template: default22.xml.j2
+            template: defaultnetwork.xml.j2
         kvm_pool_add:
           - name: default22
-            template: default22.xml.j2
+            template: defaultpool.xml.j2
         kvm_staff_use_svirt: no
         kvm_unprivuser_use_svirt: no
         kvm_virt_sandbox_use_audit: no
