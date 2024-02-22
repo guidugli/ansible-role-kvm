@@ -6,7 +6,7 @@ kvm_services: ['libvirtd', 'libvirt-guests']
 _kvm_packages:
   default: ['python3-lxml', 'python-lxml', 'qemu-kvm', 'virt-manager', 'bridge-utils', 'libnss-libvirt',
             'libguestfs-tools', 'virtinst', 'virt-top', 'python3-libvirt', 'python-libvirt']
-  Fedora: ['python3-lxml', 'libvirt', 'libvirt-nss', 'virt-install', 'libvirt-daemon-kvm',
+  Fedora: ['python3-lxml', 'libvirt', 'libvirt-nss', 'virt-install', 'libvirt-daemon-kvm', 'libosinfo',
            'virt-manager', 'virt-viewer', 'libguestfs-tools', 'python3-libguestfs', 'virt-top']
   CentOS: ['python3-lxml', 'libvirt', 'libvirt-nss', 'virt-install', 'libvirt-daemon-kvm',
            'virt-manager', 'virt-viewer', 'libguestfs-tools', 'python3-libguestfs', 'virt-top']
@@ -23,7 +23,9 @@ _kvm_packages:
   Ubuntu-22: ['python3-lxml', 'qemu-kvm', 'virt-manager', 'bridge-utils', 'libnss-libvirt',
               'libguestfs-tools', 'virtinst', 'virt-top', 'python3-libvirt']
   Debian-11: ['python3-lxml', 'qemu-kvm', 'virt-manager', 'bridge-utils', 'libnss-libvirt',
-              'libguestfs-tools', 'virtinst', 'python3-libvirt']
+              'libguestfs-tools', 'virtinst', 'python3-libvirt', 'dbus']
+  Debian: ['qemu-kvm', 'libvirt-clients', 'libvirt-daemon-system', 'bridge-utils', 'virtinst',
+           'libvirt-daemon', 'libguestfs-tools', 'libosinfo-bin', 'qemu-system', 'python3-libvirt']
 
 kvm_packages: "{{ _kvm_packages[ansible_distribution ~ '-' ~ ansible_distribution_major_version] |
               default(_kvm_packages[ansible_distribution]) | default(_kvm_packages['default']) }}"

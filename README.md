@@ -15,6 +15,10 @@ Role Variables
 
 **Available variables are listed below, along with default values (see defaults/main.yml):**
 
+    #kvm_vhost_net: false
+
+If true, it will load vhost_net module and will set the module to load on boot. Only works on systems with systemd.
+
     #kvm_network_add:
     #  - name: default22
     #    template: default22.xml.j2

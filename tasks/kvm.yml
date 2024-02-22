@@ -7,6 +7,15 @@
     state: present
     update_cache: yes
 
+- name: Enable vhost_net module
+  community.general.modprobe:
+    name: vhost_net
+    state: present
+    persistent: present
+  when:
+    - kvm_vhost_net is defined
+    - kvm_vhost_net is true
+
 - name: Enable libvirtd service
   ansible.builtin.service:
     name: "{{ item }}"

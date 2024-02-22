@@ -1,6 +1,8 @@
 ---
 # defaults file for kvm
 
+#kvm_vhost_net: false
+
 #kvm_network_add:
 #  - name: default22
 #    template: default22.xml.j2
