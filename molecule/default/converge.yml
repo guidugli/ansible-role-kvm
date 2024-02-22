@@ -33,7 +33,7 @@
     kvm_virt_use_sanlock: no
     kvm_virt_use_usb: no
     kvm_virt_use_xserver: no
-    kvm_vhost_net: yes
+    kvm_vhost_net: no
   pre_tasks:
 #    - name: update RedHat systems running yum
 #      yum:
