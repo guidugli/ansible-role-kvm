@@ -7,7 +7,8 @@ _kvm_packages:
   default: ['python3-lxml', 'python-lxml', 'qemu-kvm', 'virt-manager', 'bridge-utils', 'libnss-libvirt',
             'libguestfs-tools', 'virtinst', 'virt-top', 'python3-libvirt', 'python-libvirt']
   Fedora: ['python3-lxml', 'libvirt', 'libvirt-nss', 'virt-install', 'libvirt-daemon-kvm', 'libosinfo',
-           'virt-manager', 'virt-viewer', 'libguestfs-tools', 'python3-libguestfs', 'virt-top']
+           'libvirt-daemon-config-network', 'virt-manager', 'virt-viewer', 'libguestfs-tools', 
+           'python3-libguestfs', 'virt-top']
   CentOS: ['python3-lxml', 'libvirt', 'libvirt-nss', 'virt-install', 'libvirt-daemon-kvm',
            'virt-manager', 'virt-viewer', 'libguestfs-tools', 'python3-libguestfs', 'virt-top']
   RedHat: ['python3-lxml', 'libvirt', 'libvirt-nss', 'virt-install', 'libvirt-daemon-kvm',
