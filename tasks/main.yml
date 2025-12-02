@@ -1,17 +1,22 @@
 ---
 # tasks file for kvm
 
-- name: Warning if installing on container
-  ansible.builtin.debug:
-    msg:
-      - "============ WARNING ============"
-      - "This role will not fail if it is unable to start systemd service when"
-      - "running inside a container. It certainly fails on gitlab and github"
-      - "workflows. So it is recommended to do a post setup checkup in this case."
-  when: ansible_virtualization_type in _container_types or ansible_connection in _container_types
+- name: Execute role tasks
+  block:
 
-- name: Include assert.yml
-  ansible.builtin.include_tasks: assert.yml
+    - name: Warning if installing on container
+      ansible.builtin.debug:
+        msg:
+          - "============ WARNING ============"
+          - "This role will not fail if it is unable to start systemd service when"
+          - "running inside a container. It certainly fails on gitlab and github"
+          - "workflows. So it is recommended to do a post setup checkup in this case."
+      when: ansible_virtualization_type in _container_types or ansible_connection in _container_types
+    
+    - name: Include assert.yml
+      ansible.builtin.include_tasks: assert.yml
+    
+    - name: Include kvm.yml
+      ansible.builtin.include_tasks: kvm.yml
 
-- name: Include kvm.yml
-  ansible.builtin.include_tasks: kvm.yml
+  become: yes

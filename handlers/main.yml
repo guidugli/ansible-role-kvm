@@ -2,6 +2,7 @@
 # handlers file for kvm
 
 - name: Restart services
+  become: yes
   ansible.builtin.service:
     name: "{{ item }}"
     state: restarted
